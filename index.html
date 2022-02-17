@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bits {
+            display: flex;
+            gap: 2px;
+
+        }
+
+        .bit {
+            width: 50px;
+            height: 50px;
+            border-bottom: 1px solid green;
+            /* margin-right: 2px; */
+        }
+
+        /* .bit1 {
+            border-right: 1px solid red;
+            border-bottom: none;
+        } */
+
+        .result {
+            font-size: 50px;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <button>ADD</button>
+    <div class="bits">
+        <div class="bit"></div>
+        <div class="bit"></div>
+        <div class="bit"></div>
+        <div class="bit"></div>
+    </div>
+    <div class="result"></div>
+    <script>
+        let startResult = 0;
+        let bitsOff = [0, 0, 0, 0];
+        let a = document.querySelector('.result');
+        a.textContent = startResult;
+        let button = document.querySelector('button');
+        button.addEventListener('click', plusOneFunction);
+        let arrBit = document.querySelectorAll('.bit')
+
+        function plusOneFunction() {
+            startResult += 1
+            a.textContent = startResult;
+            addBit();
+            bitOnn();
+            if (startResult = 15) {
+                restart();
+            }
+        }
+
+        function addBit() {
+            for (let i = 3; i >= 0; i--) {
+                if (bitsOff[i] == 0) {
+                    bitsOff[i] = 1;
+                    break;
+                } else {
+                    bitsOff[i] = 0;
+                }
+
+            }
+
+        }
+
+        function bitOnn() {
+            for (let i = 3; i >= 0; i--) {
+                if (bitsOff[i] == 1) {
+                    console.log(i);
+                    arrBit[i].style.borderRight = '1px solid red'
+                    arrBit[i].style.borderBottom = 'none'
+
+                } else {
+                    arrBit[i].style.borderRight = 'none'
+                    arrBit[i].style.borderBottom = '1px solid green'
+
+                }
+            }
+        }
+        function restart() {
+            startResult = 0
+            bitsOff = [0, 0, 0, 0]
+        }
+
+
+    </script>
+</body>
+
+</html>
